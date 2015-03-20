@@ -173,11 +173,13 @@
         settings = options.formSettings.call(this, evt);
 
       $.ajax(settings).done(function(response) {
-        response = options.willReceive.call(that, response);
+        var parsedResponse = options.willReceive.call(that, response);
 
-        var result = that.handleResponse(response);
+        if (parsedResponse) {
+          var result = that.handleResponse(parsedResponse);
 
-        options.didReceive.call(that, response, result);
+          options.didReceive.call(that, parsedResponse, result);
+        }
       });  
       
       return false;
