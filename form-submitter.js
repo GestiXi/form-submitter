@@ -25,8 +25,17 @@
 
         $form.data('formSubmitter', (data = new FormSubmitter(this, $form, options)));
 
+        $form.find("input[type=submit]").click(function() {
+          $form.find("input[type=submit]").removeAttr("clicked");
+          $(this).attr("clicked", "true");
+        });
+
         $form.on('submit', function(evt) {
           evt.preventDefault();
+
+          var clickedButton = $("input[type=submit][clicked=true]");
+          clickedButton.prop('disabled', true);
+          data.clickedButton = clickedButton;
 
           var canSubmit = options.willSend.call(data, evt);
           if (canSubmit) {
@@ -173,6 +182,9 @@
         settings = options.formSettings.call(this, evt);
 
       $.ajax(settings).done(function(response) {
+        var clickedButton = that.clickedButton;
+        if (clickedButton) clickedButton.prop('disabled', false);
+        
         var parsedResponse = options.willReceive.call(that, response);
 
         if (parsedResponse) {
