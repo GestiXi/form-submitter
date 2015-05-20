@@ -245,7 +245,7 @@
         .hide()
         .appendTo('#notification-container')
         .slideDown()
-        .delay(5000)
+        .delay(8000)
         .fadeOut(400, function() {
           $notification.remove();
         });
