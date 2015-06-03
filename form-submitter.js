@@ -33,12 +33,12 @@
         $form.on('submit', function(evt) {
           evt.preventDefault();
 
-          var clickedButton = $("input[type=submit][clicked=true]");
-          clickedButton.prop('disabled', true);
-          data.clickedButton = clickedButton;
-
           var canSubmit = options.willSend.call(data, evt);
           if (canSubmit) {
+            var clickedButton = $("input[type=submit][clicked=true]");
+            clickedButton.prop('disabled', true);
+            data.clickedButton = clickedButton;
+            
             data.handler(evt);
             options.didSend.call(data, evt);
           }
