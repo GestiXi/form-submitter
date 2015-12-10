@@ -1,0 +1,25 @@
+{
+  "name": "form-submitter",
+  "description": "jQuery plugin used in GestiXi websites to handle form submission.",
+  "main": "form-submitter.js",
+  "authors": [
+    "GestiXi <nicolas@gestixi.com> (https://www.gestixi.com)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "form",
+    "submit",
+    "helper",
+    "handler",
+    "notification"
+  ],
+  "homepage": "https://github.com/gestixi/form-submitter",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
