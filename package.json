@@ -1,6 +1,6 @@
 {
   "name": "form-submitter",
-  "version": "0.1",
+  "version": "1.0",
   "description": "jQuery plugin used in GestiXi websites to handle form submission.",
   "main": "form-submitter.js",
   "scripts": {
