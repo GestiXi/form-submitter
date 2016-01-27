@@ -147,4 +147,4 @@ The options object.
 
 ## Copyright and license
 
-Copyright 2013-2015 GestiXi under [The MIT License (MIT)](LICENSE).
+Copyright 2013-2016 GestiXi under [The MIT License (MIT)](LICENSE).
