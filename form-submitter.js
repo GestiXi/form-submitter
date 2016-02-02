@@ -123,6 +123,14 @@
     didReceive: function(response, result) {},
 
     /**
+      Duration of the notifications in milliseconds.
+      
+      @type String
+      @since Version 1.1
+    */
+    notificationDelay: 8000,
+
+    /**
       Layout of the notifications.
       
       @type String
@@ -245,6 +253,9 @@
       @since Version 1.0
     */
     notify: function (notification) {
+      var options = this.options,
+        notificationDelay = options.notificationDelay;
+
       if (!$('#notification-container').length) {
         var layout = this.options.notificationLayout;
 
@@ -257,7 +268,7 @@
         .hide()
         .appendTo('#notification-container')
         .slideDown()
-        .delay(8000)
+        .delay(notificationDelay)
         .fadeOut(400, function() {
           $notification.remove();
         });

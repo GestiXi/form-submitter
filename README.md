@@ -90,6 +90,13 @@ Delegate called before the response handling.
 Delegate called after the response handling.
 
 
+### notificationDelay *{number}*
+
+Duration of the notifications in milliseconds.
+
+Default: 8000
+
+
 ### notificationLayout *{string}*
 
 Layout of the notifications.
