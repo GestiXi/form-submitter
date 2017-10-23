@@ -25,7 +25,7 @@
 
         $form.data('formSubmitter', (data = new FormSubmitter(this, $form, options)));
 
-        $form.find("input[type=submit]").on('click touchstart', function() {
+        $form.find("input[type=submit]").on('click', function() {
           $form.find("input[type=submit]").removeAttr("clicked");
           $(this).attr("clicked", "true");
         });
