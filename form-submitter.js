@@ -38,7 +38,7 @@
             var clickedButton = $("input[type=submit][clicked=true]");
             clickedButton.prop('disabled', true);
             data.clickedButton = clickedButton;
-            
+
             data.handler(evt);
             options.didSend.call(data, evt);
           }
@@ -59,12 +59,12 @@
 
       Example:
 
-          $('form').formSubmitter({ 
+          $('form').formSubmitter({
             willSend: function() {
               return true;
             }
           });
-      
+
       @type Function
       @param {Event} evt
       @returns {Boolean} true to submit the form
@@ -76,25 +76,34 @@
 
     /**
       Delegate called to get the form data.
-      
+
       @type Function
       @param {Event} evt
       @returns {String} the data to send
       @since Version 1.0
     */
     formSettings: function(evt) {
-      var $form = this.$form;
+      var $form = this.$form,
+        settings = {
+          method: $form.attr("method"),
+          url: $form.attr("action"),
+          data: $form.serialize()
+        };
 
-      return {
-        method: $form.attr("method"),
-        url: $form.attr("action"), 
-        data: $form.serialize()
-      };
+      // FormData add input file support but is not supported in IE9
+      if (window.FormData !== undefined) {
+        settings.cache = false;
+        settings.contentType = false;
+        settings.processData = false;
+        settings.data = new FormData($form[0]);
+      }
+
+      return settings;
     },
 
     /**
       Delegate called after form submission.
-      
+
       @type Function
       @param {Event} evt
       @since Version 1.0
@@ -103,7 +112,7 @@
 
     /**
       Delegate called before the response handling.
-      
+
       @type Function
       @param {String} response
       @returns {String} the response to handle
@@ -115,7 +124,7 @@
 
     /**
       Delegate called after the response handling.
-      
+
       @type Function
       @param {String} response
       @since Version 1.0
@@ -124,7 +133,7 @@
 
     /**
       Duration of the notifications in milliseconds.
-      
+
       @type String
       @since Version 1.1
     */
@@ -132,7 +141,7 @@
 
     /**
       Layout of the notifications.
-      
+
       @type String
       @since Version 1.0
     */
@@ -192,7 +201,7 @@
       $.ajax(settings).done(function(response) {
         var clickedButton = that.clickedButton;
         if (clickedButton) clickedButton.prop('disabled', false);
-        
+
         var parsedResponse = options.willReceive.call(that, response);
 
         if (parsedResponse) {
@@ -200,8 +209,8 @@
 
           options.didReceive.call(that, parsedResponse, result);
         }
-      });  
-      
+      });
+
       return false;
     },
 
@@ -228,7 +237,7 @@
 
       $('.help-inline').html('');
       $('.form-group').removeClass('has-error');
-        
+
       if (helpInline) {
         helpInline = JSON.parse(helpInline);
 
