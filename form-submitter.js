@@ -3,7 +3,7 @@
 // Description: jQuery plugin used in GestiXi websites to handle form submission
 // Copyright:   ©2013-2016 GestiXi
 // License:     Licensed under the MIT license (see LICENCE)
-// Version:     1.0
+// Version:     1.1
 // Author:      Nicolas BADIA
 // ==========================================================================
 
